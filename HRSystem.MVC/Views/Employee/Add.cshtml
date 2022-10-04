@@ -23,162 +23,171 @@
                                     <div class="card-title-wrap bar-success">
                                         <h4 class="card-title" id="horz-layout-basic">Employee Information</h4>
                                     </div>
-                                    <p class="mb-0">This is the basic horizontal form with labels on left and cost estimation form is the default position.</p>
+                                    <p class="mb-0">Please Make Sure You added Groups before add Employee , if you added groups there is an input Will appear to add this Employee to any group </p>
                                 </div>
                                 <div class="card-body">
                                     <div class="px-3">
-                                        <form asp-action="Add" asp-controller="Employee" enctype="multipart/form-data" class="form form-horizontal">
-                                            <div class="form-body">
+                                        @if (ViewBag.Groups != null&&ViewBag.Groups.Count!=0)
+                                        {
+                                            <form asp-action="Add" asp-controller="Employee" enctype="multipart/form-data" class="form form-horizontal">
+                                                <div class="form-body">
+                                                    <h4 class="form-section">
+                                                        <i class="icon-user"></i> Personal Details
+                                                    </h4>
+                                                    <div style="color:red;">@Html.ValidationMessage("AllData")</div>
+                                                    @*<div class="form-group row" asp-validation-summary="ModelOnly"></div>*@
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Full Name: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="FullName" id="projectinput2" class="form-control" name="FullName">
+                                                        <div style="color:red;">@Html.ValidationMessage("FullName")</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">BirthDate: <span style="font-size:10px; color:dimgrey">Your age must be older than 20</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="date" asp-for="BirthDate" id="projectinput2" class="form-control" name="BirthDate">
+                                                        <div style="color:red;">@Html.ValidationMessage("BirthDate")</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput3">E-mail: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="email" asp-for="Email" id="projectinput3" class="form-control" name="Email">
+                                                        <div style="color:red;">@Html.ValidationMessage("Email")</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput3">Password: <span style="font-size:10px; color:dimgrey">Must be Strong and more than 8 letter</span></label>
+                                                    <div class="col-md-9">
+                                                        <input type="password" asp-for="Password" id="projectinput3" class="form-control" name="Password">
+                                                        <div style="color:red;">@Html.ValidationMessage("Password")</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput4">Contact Number: <span style="font-size:10px; color:dimgrey">Must be 11 Number</span> </label>
+                                                    <div class="col-md-9">
+                                                        <input type="tel" asp-for="Phone" id="projectinput4" class="form-control" name="Phone">
+                                                        <div style="color:red;">@Html.ValidationMessage("Phone")</div>
+
+                                                    </div>
+                                                </div>
+
                                                 <h4 class="form-section">
-                                                    <i class="icon-user"></i> Personal Details
+                                                    <i class="icon-book-open"></i>Other Details
                                                 </h4>
-                                                <div style="color:red;">@Html.ValidationMessage("AllData")</div>
-                                                @*<div class="form-group row" asp-validation-summary="ModelOnly"></div>*@
-                                            </div>
-                                              <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput2">Full Name: </label>
-                                                <div class="col-md-9">
-                                                    <input type="text" asp-for="FullName" id="projectinput2" class="form-control" name="FullName">
-                                                    <div style="color:red;">@Html.ValidationMessage("FullName")</div>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput2">BirthDate: <span style="font-size:10px; color:dimgrey">Your age must be older than 20</span></label>
-                                                <div class="col-md-9">
-                                                    <input type="date" asp-for="BirthDate" id="projectinput2" class="form-control" name="BirthDate">
-                                                    <div style="color:red;">@Html.ValidationMessage("BirthDate")</div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput9">Date of Contract: </label>
+                                                    <div class="col-md-9">
+                                                        <div class="position-relative has-icon-left">
+                                                            <input type="date" asp-for="DateOfContract" id="timesheetinput3" class="form-control" name="DateOfContract">
+                                                            <div style="color:red;">@Html.ValidationMessage("DateOfContract")</div>
 
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput3">E-mail: </label>
-                                                <div class="col-md-9">
-                                                    <input type="email" asp-for="Email" id="projectinput3" class="form-control" name="Email">
-                                                    <div style="color:red;">@Html.ValidationMessage("Email")</div>
-
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput3">Password: <span style="font-size:10px; color:dimgrey">Must be Strong and more than 8 letter</span></label>
-                                                <div class="col-md-9">
-                                                    <input type="password" asp-for="Password" id="projectinput3" class="form-control" name="Password">
-                                                    <div style="color:red;">@Html.ValidationMessage("Password")</div>
-                                                    
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput4">Contact Number: <span style="font-size:10px; color:dimgrey">Must be 11 Number</span> </label>
-                                                <div class="col-md-9">
-                                                    <input type="tel" asp-for="Phone" id="projectinput4" class="form-control" name="Phone">
-                                                    <div style="color:red;">@Html.ValidationMessage("Phone")</div>
-                                                    
-                                                </div>
-                                            </div>
-
-                                            <h4 class="form-section">
-                                                <i class="icon-book-open"></i>Other Details
-                                            </h4>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput9">Date of Contract: </label>
-                                                <div class="col-md-9">
-                                                    <div class="position-relative has-icon-left">
-                                                        <input type="date" asp-for="DateOfContract" id="timesheetinput3" class="form-control" name="DateOfContract">
-                                                        <div style="color:red;">@Html.ValidationMessage("DateOfContract")</div>
-                                                        
-                                                        <div class="form-control-position">
-                                                            <i class="ft-message-square"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput9">Address: </label>
-                                                <div class="col-md-9">
-                                                    <input type="text" asp-for="Address" id="projectinput9" class="form-control" name="Address">
-                                                    <div style="color:red;">@Html.ValidationMessage("Address")</div>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput10">Nationality: </label>
-                                                <div class="col-md-9">
-                                                    <input type="text" asp-for="Nationality" id="projectinput10" class="form-control" name="Nationality">
-                                                    <div style="color:red;">@Html.ValidationMessage("Nationality")</div>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class=" row">
-                                                <div class="col-md-12">
-                                                    <div class=" row form-group">
-                                                        <label class="col-md-3 label-control" for="timesheetinput5">National ID: </label>
-                                                        <div class="position-relative has-icon-left col-lg-9">
-                                                            <input type="text" asp-for="NID" id="timesheetinput5" class="form-control" name="NID">
-                                                            <div style="color:red;">@Html.ValidationMessage("NID")</div>
-                                                            
                                                             <div class="form-control-position">
-                                                                <i class="ft-clock"></i>
+                                                                <i class="ft-message-square"></i>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class=" row form-group">
-                                                        <label class="col-md-3 label-control">Salary: </label>
-                                                        <div class="position-relative has-icon-left col-lg-9">
-                                                            <input type="number" asp-for="Salary" id="timesheetinput6" class="form-control" name="Salary">
-                                                            <div style="color:red;">@Html.ValidationMessage("Salary")</div>
-                                                            
-                                                            <div class="form-control-position">
-                                                                <i class="ft-clock"></i>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput9">Address: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Address" id="projectinput9" class="form-control" name="Address">
+                                                        <div style="color:red;">@Html.ValidationMessage("Address")</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput10">Nationality: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Nationality" id="projectinput10" class="form-control" name="Nationality">
+                                                        <div style="color:red;">@Html.ValidationMessage("Nationality")</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class=" row">
+                                                    <div class="col-md-12">
+                                                        <div class=" row form-group">
+                                                            <label class="col-md-3 label-control" for="timesheetinput5">National ID: </label>
+                                                            <div class="position-relative has-icon-left col-lg-9">
+                                                                <input type="text" asp-for="NID" id="timesheetinput5" class="form-control" name="NID">
+                                                                <div style="color:red;">@Html.ValidationMessage("NID")</div>
+
+                                                                <div class="form-control-position">
+                                                                    <i class="ft-clock"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class=" row form-group">
+                                                            <label class="col-md-3 label-control">Salary: </label>
+                                                            <div class="position-relative has-icon-left col-lg-9">
+                                                                <input type="number" asp-for="Salary" id="timesheetinput6" class="form-control" name="Salary">
+                                                                <div style="color:red;">@Html.ValidationMessage("Salary")</div>
+
+                                                                <div class="form-control-position">
+                                                                    <i class="ft-clock"></i>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput7">Gender: </label>
-                                                <div class="col-md-9">
-                                                    <select id="projectinput7" asp-for="Gender" name="Gender" class="form-control">
-                                                        <option value="1">Male</option>
-                                                        <option value="2">Female</option>
-                                                    </select>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput7">Gender: </label>
+                                                    <div class="col-md-9">
+                                                        <select id="projectinput7" asp-for="Gender" name="Gender" class="form-control">
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control" for="projectinput7">Group : </label>
-                                                <div class="col-md-9">
-                                                    <select id="projectinput7" asp-for="GroupID" name="GroupID" class="form-control">
-                                                        @foreach (Group r in ViewBag.Groups)
-                                                        {
-                                                            <option value="@r.Id">@r.Name</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-3 label-control">Select File Img: </label>
-                                                <div class="col-md-9">
-                                                    <label id="projectinput8" class="file center-block">
-                                                        <input type="file" asp-for="uploadedimg" name="uploadedimg" id="file">
 
-                                                        <span class="file-custom"></span>
-                                                        :
-                                                        <div style="color:red;">@Html.ValidationMessage("Img")</div>
-                                                    </label>
-                                                </div>
-                                            </div>
 
-                                            <div class="form-actions">
-                                                <button type="submit" class="btn btn-Success mr-1">
-                                                    Register
-                                                </button>
-                                            </div>
-                                        </form>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput7">Group : </label>
+                                                    <div class="col-md-9">
+                                                        <select id="projectinput7" asp-for="GroupID" name="GroupID" class="form-control">
+                                                            @foreach (Group r in ViewBag.Groups)
+                                                            {
+                                                                <option value="@r.Id">@r.Name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control">Select File Img: </label>
+                                                    <div class="col-md-9">
+                                                        <label id="projectinput8" class="file center-block">
+                                                            <input type="file" asp-for="uploadedimg" name="uploadedimg" id="file">
+
+                                                            <span class="file-custom"></span>
+                                                            :
+                                                            <div style="color:red;">@Html.ValidationMessage("Img")</div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-actions">
+                                                    <button type="submit" class="btn btn-Success mr-1">
+                                                        Register
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        }else
+                                        {
+                                            <h1>Please add Group First , Go There -> <a asp-action="Groups" asp-controller="Group" class="btn btn-primary">Click here</a></h1>
+                                        }
                                     </div>
 
                                 </div>

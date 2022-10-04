@@ -13,7 +13,6 @@ namespace HRSystem.Repositories
         {
         }
 
-
         public new Payment Add(Payment obj) =>
             base.Add(obj).Entity;
     }

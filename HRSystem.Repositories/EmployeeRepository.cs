@@ -104,66 +104,120 @@ namespace HRSystem.Repositories
             {
                 var Holidays = GetList().FirstOrDefault();
                 var UserForRole = HRRepo.GetByEmail(model.Email);
-                var Emp = base.Add(new Employee
+
+                if (Holidays != null)
                 {
-                    UserId = UserForRole.Id,
-                    Address = model.Address,
-                    DateOfContract = model.DateOfContract,
-                    FullName = model.FullName,
-                    Gender = model.Gender,
-                    Nationality = model.Nationality,
-                    NID = model.NID,
-                    Salary =model.Salary,
-                    HolidayFirstDay = Holidays.HolidayFirstDay,
-                    HolidaySecondDay = Holidays.HolidaySecondDay,
-                    GroupID = model.GroupID
-                }).Entity;
-                if (Emp.HolidayFirstDay.Year >= DateTime.Now.Year) { 
-                var Att = AttRepo.Add(new Attendance
-                {
-                    AttendanceDate = Emp.HolidayFirstDay.Add(new TimeSpan(9, 0, 0)),
-                    CheckOutDate = Emp.HolidayFirstDay.Add(new TimeSpan(17, 0, 0)),
-                    EmployeeID = Emp.UserId
-                });
-                Emp.CounterOfMonth++;
-                Emp.NumberHolidays++;
-                }
-                if (Emp.HolidaySecondDay.DayOfYear > Emp.HolidayFirstDay.DayOfYear) { 
-                var att2 = AttRepo.Add(new Attendance
-                {
-                    AttendanceDate = Emp.HolidaySecondDay.Add(new TimeSpan(9, 0, 0)),
-                    CheckOutDate = Emp.HolidaySecondDay.Add(new TimeSpan(17, 0, 0)),
-                    EmployeeID = Emp.UserId
-                });
-                Emp.CounterOfMonth++;
-                Emp.NumberHolidays++;
-                }
-                
-                var GetRoleEmployee = RoleManager.Roles.Select(r => r.Name).Where(r => r == "Employee").FirstOrDefault();
-                if (GetRoleEmployee == null) {
-                    var roleEmployee = await RoleManager.CreateAsync(new IdentityRole
+                    var Emp = base.Add(new Employee
                     {
-                        Name = "Employee",
-                    });
+                        UserId = UserForRole.Id,
+                        Address = model.Address,
+                        DateOfContract = model.DateOfContract,
+                        FullName = model.FullName,
+                        Gender = model.Gender,
+                        Nationality = model.Nationality,
+                        NID = model.NID,
+                        Salary = model.Salary,
+                        HolidayFirstDay = Holidays.HolidayFirstDay,
+                        HolidaySecondDay = Holidays.HolidaySecondDay,
+
+                        GroupID = model.GroupID
+                    }).Entity;
+                    if (Emp.HolidayFirstDay.Year >= DateTime.Now.Year)
+                    {
+                        var Att = AttRepo.Add(new Attendance
+                        {
+                            AttendanceDate = Emp.HolidayFirstDay.Add(new TimeSpan(9, 0, 0)),
+                            CheckOutDate = Emp.HolidayFirstDay.Add(new TimeSpan(17, 0, 0)),
+                            EmployeeID = Emp.UserId
+                        });
+                        Emp.CounterOfMonth++;
+                        Emp.NumberHolidays++;
+                    }
+                    if (Emp.HolidaySecondDay.DayOfYear > Emp.HolidayFirstDay.DayOfYear)
+                    {
+                        var att2 = AttRepo.Add(new Attendance
+                        {
+                            AttendanceDate = Emp.HolidaySecondDay.Add(new TimeSpan(9, 0, 0)),
+                            CheckOutDate = Emp.HolidaySecondDay.Add(new TimeSpan(17, 0, 0)),
+                            EmployeeID = Emp.UserId
+                        });
+                        Emp.CounterOfMonth++;
+                        Emp.NumberHolidays++;
+                    }
+
+                    
+
+
+                    var GetRoleEmployee = RoleManager.Roles.Select(r => r.Name).Where(r => r == "Employee").FirstOrDefault();
+                    if (GetRoleEmployee == null)
+                    {
+                        var roleEmployee = await RoleManager.CreateAsync(new IdentityRole
+                        {
+                            Name = "Employee",
+                        });
+                    }
+                    else
+                    {
+                        var addroleEmployee = await UserManager.AddToRoleAsync(UserForRole, "Employee");
+                    }
+                    var GetRole = RoleManager.Roles.Select(r => r.Name).Where(r => r == model.Role).FirstOrDefault();
+                    if (GetRole == null)
+                    {
+                        var role = await RoleManager.CreateAsync(new IdentityRole
+                        {
+                            Name = model.Role,
+                        });
+                        var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
+                        return Emp;
+                    }
+                    else
+                    {
+                        var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
+                        return Emp;
+                    }
                 }
                 else
                 {
-                    var addroleEmployee = await UserManager.AddToRoleAsync(UserForRole, "Employee");
-                }
-                var GetRole = RoleManager.Roles.Select(r => r.Name).Where(r => r == model.Role).FirstOrDefault();
-                if (GetRole == null)
-                {
-                    var role = await RoleManager.CreateAsync(new IdentityRole
+                    var Emp = base.Add(new Employee
                     {
-                        Name = model.Role,
-                    });
-                    var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
-                    return Emp;
-                }
-                else
-                {
-                    var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
-                    return Emp;
+                        UserId = UserForRole.Id,
+                        Address = model.Address,
+                        DateOfContract = model.DateOfContract,
+                        FullName = model.FullName,
+                        Gender = model.Gender,
+                        Nationality = model.Nationality,
+                        NID = model.NID,
+                        Salary = model.Salary,
+                        LastSalary = model.Salary,
+                        GroupID = model.GroupID
+                    }).Entity;
+                    var GetRoleEmployee = RoleManager.Roles.Select(r => r.Name).Where(r => r == "Employee").FirstOrDefault();
+                    if (GetRoleEmployee == null)
+                    {
+                        var roleEmployee = await RoleManager.CreateAsync(new IdentityRole
+                        {
+                            Name = "Employee",
+                        });
+                    }
+                    else
+                    {
+                        var addroleEmployee = await UserManager.AddToRoleAsync(UserForRole, "Employee");
+                    }
+                    var GetRole = RoleManager.Roles.Select(r => r.Name).Where(r => r == model.Role).FirstOrDefault();
+                    if (GetRole == null)
+                    {
+                        var role = await RoleManager.CreateAsync(new IdentityRole
+                        {
+                            Name = model.Role,
+                        });
+                        var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
+                        return Emp;
+                    }
+                    else
+                    {
+                        var addedwithrole = await UserManager.AddToRoleAsync(UserForRole, model.Role);
+                        return Emp;
+                    }
                 }
             }
             else
@@ -256,9 +310,10 @@ namespace HRSystem.Repositories
             var Employees = base.GetList().ToList();
             for(int i = 0; i < Employees.Count; i++)
             {
-                if(Employees[i].HolidayFirstDay.DayOfYear != obj.FirstDay.DayOfYear) { 
-                Employees[i].HolidayFirstDay = obj.FirstDay;
-                    var getAtt = AttRepo.GetList().Where(a => a.AttendanceDate.DayOfYear == obj.FirstDay.DayOfYear);
+                if(Employees[i].HolidayFirstDay.DayOfYear <= obj.FirstDay.DayOfYear) { 
+                    Employees[i].HolidayFirstDay = obj.FirstDay;
+                    var getAtt = AttRepo.GetList().Where(a => a.AttendanceDate.DayOfYear == obj.FirstDay.DayOfYear
+                            && a.EmployeeID == Employees[i].UserId).FirstOrDefault();
                     if (getAtt == null) { 
                         var att = AttRepo.Add(new Attendance
                         {
@@ -270,11 +325,12 @@ namespace HRSystem.Repositories
                         Employees[i].NumberHolidays++;
                     }
                 }
-                if(Employees[i].HolidaySecondDay.DayOfYear != obj.SecondDay.DayOfYear) { 
+                if(Employees[i].HolidaySecondDay.DayOfYear <= obj.SecondDay.DayOfYear) { 
                 if (obj.SecondDay > obj.FirstDay)
                 {
                             Employees[i].HolidaySecondDay = obj.SecondDay;
-                        var getAtt = AttRepo.GetList().Where(a => a.AttendanceDate.DayOfYear == obj.SecondDay.DayOfYear);
+                        var getAtt = AttRepo.GetList().Where(a => a.AttendanceDate.DayOfYear == obj.SecondDay.DayOfYear
+                        && a.EmployeeID == Employees[i].UserId).FirstOrDefault();
                         if (getAtt == null)
                         {
                             var att2 = AttRepo.Add(new Attendance

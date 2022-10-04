@@ -1,71 +1,348 @@
-﻿@using HRSystem.Models
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using HRSystem.Models;
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 @model User
 
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" class="loading">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link href="./css/LoginAndRegister.css" rel="stylesheet" />
-    <title>HR-System :Register</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Hr-system</title>
+	<link rel="apple-touch-icon" sizes="60x60" href="../Content/apple-icon-60.html">
+	<link rel="apple-touch-icon" sizes="76x76" href="../Content/apple-icon-76.html">
+	<link rel="apple-touch-icon" sizes="120x120" href="../Content/apple-icon-120.html">
+	<link rel="apple-touch-icon" sizes="152x152" href="../Content/apple-icon-152.html">
+	<link rel="shortcut icon" type="image/png" href="../Content/logo.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/perfect-scrollbar.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/prism.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/chartist.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/app.css">
+	<style>
+
+		
+		body {
+			background: #031323;
+			overflow: hidden;
+		}
+
+		.fas {
+			width: 32px;
+		}
+
+		section {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+			background-size: 400% 400%;
+			animation: gradient 10s ease infinite;
+		}
+
+		
+
+		.box {
+			position: relative;
+		}
+
+			.box .square {
+				position: absolute;
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(5px);
+				box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 15px;
+				animation: square 10s linear infinite;
+				animation-delay: calc(-1s * var(--i));
+			}
+
+		
+
+		.box .square:nth-child(1) {
+			width: 100px;
+			height: 100px;
+			top: -15px;
+			right: -45px;
+		}
+
+		.box .square:nth-child(2) {
+			width: 150px;
+			height: 150px;
+			top: 105px;
+			left: -125px;
+			z-index: 2;
+		}
+
+		.box .square:nth-child(3) {
+			width: 60px;
+			height: 60px;
+			bottom: 85px;
+			right: -45px;
+			z-index: 2;
+		}
+
+		.box .square:nth-child(4) {
+			width: 50px;
+			height: 50px;
+			bottom: 35px;
+			left: -95px;
+		}
+
+		.box .square:nth-child(5) {
+			width: 50px;
+			height: 50px;
+			top: -15px;
+			left: -25px;
+		}
+
+		.box .square:nth-child(6) {
+			width: 85px;
+			height: 85px;
+			top: 165px;
+			right: -155px;
+			z-index: 2;
+		}
+
+		.container {
+			position: relative;
+			padding: 50px;
+			min-height: 380px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(5px);
+			border-radius: 10px;
+			box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+		}
+
+			.container::after {
+				content: '';
+				position: absolute;
+				top: 5px;
+				right: 5px;
+				bottom: 5px;
+				left: 5px;
+				border-radius: 5px;
+				pointer-events: none;
+				background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 2%);
+			}
+
+		.form {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+			.form h2 {
+				color: #fff;
+				letter-spacing: 2px;
+				margin-bottom: 30px;
+			}
+
+			.form .inputBx {
+				position: relative;
+				width: 100%;
+				margin-bottom: 20px;
+			}
+
+				.form .inputBx input {
+					width: 100%;
+					outline: none;
+					border: none;
+					border: 1px solid rgba(255, 255, 255, 0.2);
+					background: rgba(255, 255, 255, 0.2);
+					padding: 8px 10px;
+					padding-left: 40px;
+					border-radius: 15px;
+					color: #fff;
+					font-size: 16px;
+					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+				}
+
+				.form .inputBx .password-control {
+					position: absolute;
+					top: 11px;
+					right: 10px;
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+					transition: 0.5s;
+				}
+				
+				.form .inputBx .view {
+					background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+					transition: 0.5s;
+				}
+
+				.form .inputBx .fas {
+					position: absolute;
+					top: 13px;
+					left: 13px;
+				}
+
+				.form .inputBx input[type="submit"] {
+					background: #fff;
+					color: #111;
+					max-width: 100px;
+					padding: 8px 10px;
+					box-shadow: none;
+					letter-spacing: 1px;
+					cursor: pointer;
+					transition: 1.5s;
+				}
+
+					.form .inputBx input[type="submit"]:hover {
+						background: linear-gradient(115deg, rgba(0, 0, 0, 0.10), rgba(255, 255, 255, 0.25));
+						color: #fff;
+						transition: 0.5s;
+					}
+
+				.form .inputBx input::placeholder {
+					color: #fff;
+				}
+
+				.form .inputBx span {
+					position: absolute;
+					left: 30px;
+					padding: 10px;
+					display: inline-block;
+					color: #fff;
+					transition: 0.5s;
+					pointer-events: none;
+				}
+
+				.form .inputBx input:focus ~ span, .form .inputBx input:valid ~ span {
+					transform: translateX(-30px) translateY(-25px);
+					font-size: 12px;
+				}
+
+			.form p {
+				color: #fff;
+				font-size: 15px;
+				margin-top: 5px;
+			}
+
+				.form p a {
+					color: #fff;
+				}
+
+					.form p a:hover {
+						background-color: #000;
+						background-image: linear-gradient(to right, #434343 0%, black 100%);
+						-webkit-background-clip: text;
+						-webkit-text-fill-color: transparent;
+					}
+
+		.remember {
+			position: relative;
+			display: inline-block;
+			color: #fff;
+			margin-bottom: 10px;
+			cursor: pointer;
+		}
+
+		.form .inputBx {
+			position: relative;
+			width: 100%;
+			margin-bottom: 20px;
+			font-weight: 600;
+			font-size: 17px;
+		}
+
+		.text-center img {
+			height: 90px;
+			margin-bottom: 25px;
+		}
+	</style>
 </head>
 <body>
-<section class="bg-image gradient-custom-3" 
-  style="background-size:cover;background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-  <div class=" mask d-flex align-items-center   ">
-    <div class="container  ">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-12 6">
-          <div class="card "  style="border-radius: 15px;box-shadow: 10px 10px 50px grey !important;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-4">Create an account HR</h2>
+	<section>
 
-              <form asp-action="AddHR" asp-controller="HR" method="post" enctype="multipart/form-data">
-                <div class="d-flex justify-content-around align-content-center">
-                  <div class="border-3 border-dark">
-                
-                <div class="form-outline mb-2">
-                 <label for="Email">Email  </label>
-                       <input type="text" asp-for="Email" name="Email" class="form-control form-control-lg" id="Email"/>
-                </div>
+		<div class="box">
 
-                <div class="form-outline mb-2">
-               <label for="PasswordHash">Password  </label>
-                 <input type="password" asp-for="PasswordHash" name="PasswordHash" class="form-control form-control-lg" id="PasswordHash"/>
-                </div>
+			<div class="square" style="--i:0;"></div>
+			<div class="square" style="--i:1;"></div>
+			<div class="square" style="--i:2;"></div>
+			<div class="square" style="--i:3;"></div>
+			<div class="square" style="--i:4;"></div>
+			<div class="square" style="--i:5;"></div>
 
+			<div class="container">
+				<div class="form">
+					<div class="text-center">
+						<asp:Image ID="Image1" runat="server" ImageUrl="~/../Content/logo.png" />
+					</div>
 
-                 <div class="form-outline mb-2">
-               <label for="Phone">Phone  </label>
-                <input type="text" asp-for="PhoneNumber" name="PhoneNumber"  class="form-control form-control-lg" id="Phone"/>
-                </div>
-               
-                 
-                  <div class="form-outline mb-2">
-                 <div class="align-items-center d-flex flex-md-column mt-2">
-                 <input type="submit"  class="btn btn-success  btn-block btn-lg gradient-custom-4 text-body" value="Register"  />
-                   </div>
-                   </div>
-                <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="~/SignIn"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-                </div>
-               
-                 </div>
+					<h2>Hr System Login  </h2>
+					<form asp-action="AddHR" asp-controller="HR" method="post">
+						<div class="inputBx">
+							<input type="email" asp-for="Email" name="Email" required="required">
+							<span>Email</span>
 
-              </form>
+						</div>
+						<div class="inputBx password">
+							<input id="password-input" type="password" asp-for="PasswordHash" name="PasswordHash" required="required">
+							<span>Password</span>
+							<a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+						</div>
+						<div class="inputBx">
+							<input type="tel" asp-for="PhoneNumber" name="PhoneNumber" required="required">
+							<span>Phone Number</span>
+							
 
+						</div>
 
+						<label class="date">
+							<span style="color:white;"> BirthDate</span>
+							<input type="date" class="form-control" asp-for="BirthDate" name="BirthDate" required="required">
+						</label>
+						<div class="inputBx">
+							<input type="submit" value="Sign up" >
+						</div>
+					</form>
+					
+					<p>If you have account go sign in<a asp-action="Login" asp-controller="HR">Sign in</a></p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/js/prism.min.js"></script>
+	<script src="/js/jquery.matchHeight-min.js"></script>
+	<script src="/js/screenfull.min.js"></script>
+	<script src="/js/pace/pace.min.js"></script>
+	<script src="/js/chartist.min.js"></script>
+	<script src="/js/app-sidebar.js"></script>
+	<script src="/js/notification-sidebar.js"></script>
+	<script src="/js/customizer.js"></script>
+	<script src="/js/dashboard-ecommerce.js"></script>
+	<script>
+		function show_hide_password(target) {
+			var input = document.getElementById('password-input');
+			if (input.getAttribute('type') == 'password') {
+				target.classList.add('view');
+				input.setAttribute('type', 'text');
+			} else {
+				target.classList.remove('view');
+				input.setAttribute('type', 'password');
+			}
+			return false;
+		}
+	</script>
 </body>
 </html>

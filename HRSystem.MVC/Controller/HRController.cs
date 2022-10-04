@@ -24,14 +24,14 @@ namespace HRSystem.MVC
             UnitOfWork = _UnitOfWork;
             HRRepo = _HRRepo;
         }
-        [Authorize(Roles = "hr")]
+        //[Authorize(Roles = "hr")]
         [Route("HR/AddHR")]
         [HttpGet]
         public IActionResult AddHR()
         {
             return View();
         }
-        [Authorize(Roles = "hr")]
+        //[Authorize(Roles = "hr")]
         [HttpPost]
         public async Task<IActionResult> AddHR(User obj)
         {

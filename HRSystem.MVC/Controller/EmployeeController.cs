@@ -87,6 +87,8 @@ namespace HRSystem.MVC
                                                             s.CopyTo(fs);
                                                             fs.Position = 0;
                                                             model.Role = "Employee";
+                                                            if (model.GroupID == null ||model.GroupID==0)
+                                                                model.GroupID = 0;
                                                             var result = await EmpRepo.Add(model);
                                                             var OfficialHolidays = OffRepo.GetList().ToList();
                                                             for (int i = 0; i < OfficialHolidays.Count(); i++)
@@ -258,43 +260,7 @@ namespace HRSystem.MVC
             UnitOfWork.Save();
             return RedirectToAction("Employees");
         }
-        [Authorize(Roles = "hr")]
-        [HttpGet]
-        public IActionResult ChangeRole(string ID)
-        {
 
-            var user = HRRepo.GetByID(ID);
-            var roles = UserManager.GetRolesAsync(user).Result.ToList();
-            //ViewBag.UserID = user.Id;
-            var roleView = new ChangeRoleView
-            {
-                AllRoles = RoleManager.Roles.Select(r => r.Name.ToString()).ToList(),
-                UserName = user.Employee.FullName,
-                UserID = user.Id,
-                UserRoles = roles
-            };
-            return View(roleView);
-        }
-        [Authorize(Roles = "hr")]
-        [HttpPost]
-        public async Task<IActionResult> ChangeRole(ChangeRoleView obj)
-        {
-
-            var user = HRRepo.GetByID(obj.UserID);
-            var AddRole = await UserManager.AddToRoleAsync(user, obj.RoleName);
-            UnitOfWork.Save();
-            ViewBag.UID = user.Id;
-            return RedirectToAction("ChangeRole", "Employee");
-        }
-        [Authorize(Roles = "hr")]
-        [HttpPost]
-        public async Task<IActionResult> RemoveRole(ChangeRoleView obj)
-        {
-            var user = HRRepo.GetByID(obj.UserID);
-            var remove = await UserManager.RemoveFromRoleAsync(user, obj.RoleName);
-            UnitOfWork.Save();
-            return RedirectToAction("Employees", "Employee");
-        }
         [Authorize(Roles = "hr")]
         [HttpGet]
         public IActionResult Salaries()
