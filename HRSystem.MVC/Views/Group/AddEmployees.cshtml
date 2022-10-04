@@ -1,0 +1,60 @@
+@using HRSystem.ViewModels
+@using Microsoft.AspNetCore.Identity
+@model List<EmployeeViewModel>
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card mb-4">
+                                    <p>You Should know Employees in this Group Will not appear here</p>
+                                    
+                                    <div class="card-body ">
+                                        <table class="Table table-bordered w-50 text-center" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Employee Name</th>
+                                                    <th scope="col">Employees Group Name</th>
+                                                    <th scope="col">Add To This Group</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var role in @Model)
+                                                {
+                                                    <tr>
+                                                        <td>@role.FullName</td>
+                                                        <td>@if(role.GroupName!=null){
+                                                                @role.GroupName
+                                                                ;
+                                                            }
+                                                            else{
+                                                                role.GroupName = "None";
+                                                            }</td>
+                                                        <td>
+                                                            <form asp-action="AddEmployees" asp-controller="Group">
+                                                                <input value="@role.UserId" name="UserId" asp-for="@role.UserId" hidden>
+                                                                <input value="@role.GroupID" name="GroupID" asp-for="@role.GroupID" hidden>
+                                                                <button type="submit" class="btn btn-success">Add</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

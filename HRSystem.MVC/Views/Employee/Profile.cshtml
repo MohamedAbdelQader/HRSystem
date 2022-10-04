@@ -1,0 +1,90 @@
+﻿@using HRSystem.Models
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model Employee
+@{
+    Layout = "_EmployeeLayout";
+}
+<div class="main-panel">
+        <div class="main-content">
+          <div class="content-wrapper">
+            <div class="container-fluid"><!-- Zero configuration table -->
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <asp:Image ID="Image1" runat="server" height="55px" width="60px" ImageUrl="~/../Content/01.jpg" />
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                       <div class="row">
+                            
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-3">
+                                <button id="addRow" class="btn btn-primary mb-2">
+                                    <i class="ft-plus"></i>&nbsp;
+                                    <a asp-action="EmpAttendance" asp-controller="Employee">  See Your Attendance</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            
+                            <div class="card-body">
+                                <table class="Table table-bordered w-100" style="padding:20px; text-align:center;">
+                                    <thead>
+                                            <tr>
+                                                <th scope="col">FullName</th><th>@Model.FullName</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Email</th><td>@Model.User.Email</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Group</th><td>@Model.Group.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Date Of Contract</th><td>@Model.DateOfContract.Year/@Model.DateOfContract.Month/@Model.DateOfContract.Day</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Receiving Money Date</th><td>@Model.ReceivingMoneyTime.Year/@Model.ReceivingMoneyTime.Month/@Model.ReceivingMoneyTime.Day</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">First Holiday this Week</th><td>@Model.HolidayFirstDay.Year/@Model.HolidayFirstDay.Month/@Model.HolidayFirstDay.Day</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Second Holiday this Week</th><td>@Model.HolidaySecondDay.Year/@Model.HolidaySecondDay.Month/@Model.HolidaySecondDay.Day</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Salary</th><td>@Model.Salary</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Additions</th><td>@Model.Additions</td>
+                                            </tr>
+                                             <tr>
+                                                <th scope="col">Discounts</th><td>@Model.Discounts</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Your Salary after Additions & Dicounts</th><td>@Model.LastSalary</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">Phone</th><td>@Model.User.PhoneNumber</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col">National ID</th><td>@Model.NID</td>
+                                            </tr>
+                                            
+                                    </thead>
+                                    
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ </div>
+          </div>
+        </div>
+        </div>
+        

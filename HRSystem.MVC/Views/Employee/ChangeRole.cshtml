@@ -1,0 +1,71 @@
+﻿@using HRSystem.ViewModels
+@model ChangeRoleView
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title">Change Roles </h4>
+
+                                        <br />
+                                        <form asp-action="ChangeRole" asp-controller="Employee">
+                                            <input asp-for="UserID" value="@Model.UserID" hidden/>
+                                        <select id="projectinput7" asp-for="RoleName" name="RoleName" class="form-control">
+                                                        @foreach(var r in @Model.AllRoles){
+                                                            <option value="@r">@r</option>
+                                                        }
+                                        </select>
+                                        <br />
+                                        <br />
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-table me-1"></i>
+                                        User Name : @Model.UserName
+                                    </div>
+                                    <div class="card-body ">
+                                        <table class="Table table-bordered w-50 text-center" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Role Name</th>
+                                                    <th scope="col">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var Emp in @Model.UserRoles)
+                                                {
+                                                    <tr>
+                                                        <td>@Emp</td>
+                                                        <td>
+                                                            <form asp-action="RemoveRole" asp-controller="Employee">
+                                                            <input type="text" value="@Model.UserID"  name="UserID" hidden />
+                                                            <input type="text" value="@Emp" name="RoleName" hidden />    
+                                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                                           </form>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

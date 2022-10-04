@@ -1,0 +1,69 @@
+﻿@using HRSystem.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Employee
+
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="horizontal-form-layouts">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="content-header">Update Salary Form</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title" id="horz-layout-basic">Salary Information for : @Model.FullName</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="px-3">
+                                        <form asp-action="UpdateSalary" asp-controller="Employee" enctype="multipart/form-data" class="form form-horizontal">
+                                            <div class="form-body">
+                                                <input value="@Model.UserId" name="UserId"/>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput1">Salary: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="number" asp-for="Salary" value="@Model.Salary" id="projectinput1" class="form-control" name="Salary">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Additions: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="number" asp-for="Additions" value="@Model.Additions" id="projectinput2" class="form-control" name="Additions">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Discounts: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="number" asp-for="Discounts" value="@Model.Discounts" id="projectinput2" class="form-control" name="Discounts">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-actions">
+                                                    <button type="submit" class="btn btn-success mr-1">
+                                                         Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic form layout section end -->
+            </div>
+        </div>
+    </div>
+</div>

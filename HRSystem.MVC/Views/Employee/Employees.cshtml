@@ -1,0 +1,101 @@
+@using HRSystem.ViewModels
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model PaginingViewModel<List<EmployeeViewModel>>
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+        <div class="main-content">
+          <div class="content-wrapper">
+            <div class="container-fluid"><!-- Zero configuration table -->
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Employees Information</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        <div class="row">
+                            
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-3">
+                                <button id="addRow" class="btn btn-primary mb-2">
+                                    <i class="ft-plus"></i>&nbsp;
+                                    <a asp-action="Add" asp-controller="Employee">  Add New Employee</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            
+                            <div class="card-body">
+                                <table class="Table table-bordered" id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">FullName</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">DateOfContract</th>
+                                            <th scope="col">First Holiday</th>
+                                            <th scope="col">Second Holiday</th>
+                                            <th scope="col">Salary</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Delete</th>
+                                            <th scope="col">Edit</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        @foreach (var Emp in Model.Data)
+                                        {
+                                            <tr>
+
+                                                <td>@Emp.FullName</td>
+                                                <td>@Emp.Email</td>
+                                                <td>@Emp.DateOfContract.Year/@Emp.DateOfContract.Month/@Emp.DateOfContract.Day</td>
+                                                <td>@Emp.FirstDay.Year/@Emp.FirstDay.Month/@Emp.FirstDay.Day</td>
+                                                <td>@Emp.SecondDay.Year/@Emp.SecondDay.Month/@Emp.SecondDay.Day</td>
+                                                <td>@Emp.Salary</td>
+                                                <td>@Emp.Phone</td>
+                                                <td>@Emp.Address</td>
+                                                <td>
+                                                    @if (@Emp.IsDeleted == true)
+                                                    {
+                                                        <a asp-action="SoftDelete" asp-controller="HR"
+                                                    asp-route-Id="@Emp.UserId"
+                                                    class="btn btn-primary">Not Activate</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="SoftDelete" asp-controller="HR"
+                                                         asp-route-Id="@Emp.UserId"
+                                                         class="btn btn-danger">Active</a>
+                                                    }
+
+                                                </td>
+                                                <td><a class="btn btn-success" asp-action="UpdateForHR" asp-controller="Employee" asp-route-Id=@Emp.UserId>Edit</a></td>
+                                                
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ </div>
+          </div>
+        </div>
+        </div>
+        

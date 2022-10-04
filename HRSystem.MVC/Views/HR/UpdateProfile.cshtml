@@ -1,0 +1,75 @@
+﻿@using HRSystem.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model User
+
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="horizontal-form-layouts">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="content-header">Update HR Form</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title" id="horz-layout-basic">Employee Information</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="px-3">
+                                        <form asp-action="UpdateProfile" asp-controller="HR" class="form form-horizontal">
+                                            <div class="form-body">
+                                                        <input type="text" asp-for="Id" value="@Model.Id" id="projectinput1" class="form-control" name="Id" hidden>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput1">Email: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Email" value="@Model.Email" id="projectinput1" class="form-control" name="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Password: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="password" asp-for="PasswordHash" id="projectinput2" class="form-control" name="PasswordHash">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Phone: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="tel" asp-for="PhoneNumber" value="@Model.PhoneNumber" id="projectinput2" class="form-control" name="PhoneNumber">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput3">BirthDate: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="date" asp-for="BirthDate" value="@Model.BirthDate" id="projectinput3" class="form-control" name="BirthDate">
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <button type="submit" class="btn btn-success mr-1">
+                                                         Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic form layout section end -->
+            </div>
+        </div>
+    </div>
+</div>

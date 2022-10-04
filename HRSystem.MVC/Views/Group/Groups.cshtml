@@ -1,0 +1,75 @@
+﻿@using HRSystem.Models
+@using Microsoft.AspNetCore.Identity
+
+@model Group
+@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                               <div class="card-body collapse show" >
+
+                                    <div style="text-align:center;">
+                                        <form asp-action="AddGroup" asp-controller="Group">
+                                            
+                                            <div >
+                                                <label>
+                                                    Group Name :
+                                                </label>
+                                                <input type="text" asp-for="Name" name="Name"
+                                                                       class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">ADD</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="card mb-4">
+                                    
+                                    <div class="card-body ">
+                                        <table class="Table table-bordered w-50 text-center" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Group Name</th>
+                                                    <th scope="col">Employees Count in this Group</th>
+                                                    <th scope="col">Add Employees To This Group</th>
+                                                    <th scope="col">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var role in @ViewBag.Groups)
+                                                {
+                                                    <tr>
+                                                        <td>@role.Name</td>
+                                                        <td>@role.Employees.Count</td>
+                                                        <td>
+                                                            <a asp-action="AddEmployees" asp-controller="Group"
+                                                                asp-route-ID="@role.Id"
+                                                                class="btn btn-primary">Add Employees To Group</a>
+                                                        </td>
+                                                        <td>
+                                                            <a asp-action="Remove" asp-controller="Group"
+                                                                asp-route-ID="@role.Id"
+                                                                class="btn btn-danger">Remove</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+@using HRSystem.Models
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model OfficialHolidays
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Zero configuration table -->
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title">Official Holidays Information</h4>
+                                        <form asp-action="Add" asp-controller="OfficialHolidays">
+                                            <div >
+                                                <label asp-for="Name">
+                                                    Holiday Name :
+                                                </label>
+                                                    <input type="text" asp-for="Name" name="Name"
+                                                                         class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                            </div>
+                                            <div >
+                                                <label asp-for="FromDate">
+                                                    From Date :
+                                                </label>
+                                                <input type="date" asp-for="FromDate" name="FromDate"
+                                                                      class="form-control " placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                            </div>
+                                            <div >
+                                                <label asp-for="ToDate">
+                                                    To Date :
+                                                </label>
+                                                <input type="date" asp-for="ToDate" name="ToDate"
+                                                                    class="form-control" placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                            </div>
+                                            <br />
+                                            <button type="submit" class="btn btn-success">ADD</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card-body collapse show">
+                                    <div class="card-block card-dashboard">
+
+
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-table me-1"></i>
+                                                DataTable
+                                            </div>
+                                            <div class="card-body">
+                                                <table id="datatablesSimple">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Holiday Name</th>
+                                                            <th scope="col">From Date</th>
+                                                            <th scope="col">To Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var Emp in ViewBag.OffHolidays)
+                                                        {
+                                                            <tr>
+                                                                <td>@Emp.Name</td>
+                                                                <td>@Emp.FromDate</td>
+                                                                <td>@Emp.ToDate</td>
+                                                                <td>
+                                                                    <a asp-action="Remove" asp-controller="OfficialHolidays"
+                                                                   asp-route-Id="@Emp.ID"
+                                                                   class="btn btn-primary">Remove</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

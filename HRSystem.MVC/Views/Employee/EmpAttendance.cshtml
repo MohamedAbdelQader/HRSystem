@@ -1,0 +1,63 @@
+﻿@using HRSystem.Models
+@using HRSystem.ViewModels
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@model List<Attendance>
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+        <div class="main-content">
+          <div class="content-wrapper">
+            <div class="container-fluid"><!-- Zero configuration table -->
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Attendance Information</h4>
+                        
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        
+                        <div class="card mb-4">
+                            
+                            <div class="card-body">
+                                <table class="Table table-bordered" id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">EmployeeName</th>
+                                            <th scope="col">Attendance Date</th>
+                                            <th scope="col">Checkout Date</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        @foreach (var Emp in Model)
+                                        {
+                                            <tr>
+                                                <td>@Emp.Employee.FullName</td>
+                                                <td>@Emp.AttendanceDate</td>
+                                                <td>@Emp.CheckOutDate</td>
+                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ </div>
+          </div>
+        </div>
+        </div>
+        

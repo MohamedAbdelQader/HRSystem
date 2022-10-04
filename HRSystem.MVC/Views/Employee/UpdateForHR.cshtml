@@ -1,0 +1,123 @@
+﻿@using HRSystem.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model EmployeeEditViewModel
+
+@{
+    Layout = "_Layout";
+}
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <section id="horizontal-form-layouts">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="content-header">Update Employee Form</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title" id="horz-layout-basic">Employee Information</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="px-3">
+                                        <form asp-action="UpdateForHR" asp-controller="Employee" enctype="multipart/form-data" class="form form-horizontal">
+                                            <div class="form-body">
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput1">Full Name: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="FullName" value="@Model.FullName" id="projectinput1" class="form-control" name="FullName">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput2">Address: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Address" value="@Model.Address" id="projectinput2" class="form-control" name="Address">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput3">Phone: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Phone" value="@Model.Phone" id="projectinput3" class="form-control" name="Phone">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput4">E-mail: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="Email" value="@Model.Email" id="projectinput4" class="form-control" name="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput5">Password: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="password" asp-for="Password" id="projectinput5" class="form-control" name="Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput6">Date Of Contract: </label>
+                                                    <div class="col-md-9">
+                                                        <div>Last Date : @Model.DateOfContract.Year/@Model.DateOfContract.Month/@Model.DateOfContract.Day</div>
+                                                        <input type="date" asp-for="DateOfContract"  id="projectinput6" class="form-control" name="DateOfContract">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput7">Salary: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="number" asp-for="Salary" value="@Model.Salary" id="projectinput7" class="form-control" name="Salary">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput8">First Holiday: </label>
+                                                    <div class="col-md-9">
+                                                        <div>Last Date : @Model.FirstDay.Year/@Model.FirstDay.Month/@Model.FirstDay.Day</div>
+                                                        <input type="date" asp-for="FirstDay" value="@Model.FirstDay.Date" id="projectinput8" class="form-control" name="FirstDay">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput9">Second Holiday: </label>
+                                                    <div class="col-md-9">
+                                                        <div>Last Date : @Model.SecondDay.Year/@Model.SecondDay.Month/@Model.SecondDay.Day</div>
+                                                        <input type="date" asp-for="SecondDay" value="@Model.SecondDay.Date" id="projectinput9" class="form-control" name="SecondDay">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput10">Work hours per day: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="number" asp-for="WorkHours" value="@Model.WorkHours" id="projectinput10" class="form-control" name="WorkHours">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="projectinput11">National ID: </label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" asp-for="NID" value="@Model.NID" id="projectinput11" class="form-control" name="NID">
+                                                    </div>
+                                                </div>
+                                                
+                                               <input type="text" asp-for="UserId" value="@Model.UserId" id="projectinput12" class="form-control" name="UserId" hidden>
+
+                                                <div class="form-actions">
+                                                    <button type="submit" class="btn btn-success mr-1">
+                                                         Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic form layout section end -->
+            </div>
+        </div>
+    </div>
+</div>

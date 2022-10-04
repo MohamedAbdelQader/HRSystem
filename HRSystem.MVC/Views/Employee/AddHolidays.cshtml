@@ -1,0 +1,50 @@
+@{
+    Layout = "_Layout";
+}
+@using HRSystem.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HolidaysViewModel
+<div class="main-panel">
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Zero configuration table -->
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title-wrap bar-success">
+                                        <h4 class="card-title">Add Holiday </h4>
+                                    </div>
+                                </div>
+                                <div class="card-body collapse show" >
+
+                                    <div >
+                                        <form asp-action="AddHolidays" asp-controller="Employee">
+                                            <div class="col-sm-12 col-md-9">
+                                                <label>
+                                                    First Day :<input type="date" asp-for="FirstDay" name="FirstDay"
+                                                                         class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-9">
+                                                <label>
+                                                    Second Day :<input type="date" asp-for="SecondDay" name="SecondDay"
+                                                                       class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0" style="height: 58px;">
+                                                </label>
+                                            </div> 
+                                            
+                                            <button type="submit" class="btn btn-success">ADD</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

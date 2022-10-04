@@ -1,0 +1,71 @@
+﻿@using HRSystem.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model User
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <link href="./css/LoginAndRegister.css" rel="stylesheet" />
+    <title>HR-System :Register</title>
+</head>
+<body>
+<section class="bg-image gradient-custom-3" 
+  style="background-size:cover;background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class=" mask d-flex align-items-center   ">
+    <div class="container  ">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 6">
+          <div class="card "  style="border-radius: 15px;box-shadow: 10px 10px 50px grey !important;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-4">Create an account HR</h2>
+
+              <form asp-action="AddHR" asp-controller="HR" method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-around align-content-center">
+                  <div class="border-3 border-dark">
+                
+                <div class="form-outline mb-2">
+                 <label for="Email">Email  </label>
+                       <input type="text" asp-for="Email" name="Email" class="form-control form-control-lg" id="Email"/>
+                </div>
+
+                <div class="form-outline mb-2">
+               <label for="PasswordHash">Password  </label>
+                 <input type="password" asp-for="PasswordHash" name="PasswordHash" class="form-control form-control-lg" id="PasswordHash"/>
+                </div>
+
+
+                 <div class="form-outline mb-2">
+               <label for="Phone">Phone  </label>
+                <input type="text" asp-for="PhoneNumber" name="PhoneNumber"  class="form-control form-control-lg" id="Phone"/>
+                </div>
+               
+                 
+                  <div class="form-outline mb-2">
+                 <div class="align-items-center d-flex flex-md-column mt-2">
+                 <input type="submit"  class="btn btn-success  btn-block btn-lg gradient-custom-4 text-body" value="Register"  />
+                   </div>
+                   </div>
+                <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="~/SignIn"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+                </div>
+               
+                 </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
